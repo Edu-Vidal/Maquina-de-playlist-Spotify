@@ -7,7 +7,7 @@ from dados_importantes import user_id, auth_key
 
 class cria_playlist:
 
-    def __init__(self, x, y, numero_de_playlists=5, size_of_playlist_created=10):
+    def __init__(self, x, y, numero_de_playlists=10, size_of_playlist_created=10):
         self.palavra_1 = x
         self.palavra_2 = y
         self.num_playlists = numero_de_playlists
@@ -81,8 +81,8 @@ class cria_playlist:
         return response_json['id']
 
     def adicione_tracks_playlist(self):
-        id_tracks = self.select_songs_from_playlists()
-        uri_parameter = ','.join(id_tracks)
+        tracks_uri = self.select_songs_from_playlists()
+        uri_parameter = ','.join(tracks_uri)
         query = "https://api.spotify.com/v1/playlists/{}/tracks?uris={}".format(
             self.create_spotify_playlist(),
             uri_parameter
@@ -98,5 +98,5 @@ class cria_playlist:
 
 
 if __name__ == '__main__':
-    test = cria_playlist('Lucas', 'Du')
+    test = cria_playlist('study', 'work', size_of_playlist_created=10)
 
