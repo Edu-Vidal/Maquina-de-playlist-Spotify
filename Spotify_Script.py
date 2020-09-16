@@ -7,10 +7,11 @@ from dados_importantes import user_id, auth_key
 
 class cria_playlist:
 
-    def __init__(self, x, y, numero_de_playlists=5):
+    def __init__(self, x, y, numero_de_playlists=5, size_of_playlist_created=10):
         self.palavra_1 = x
         self.palavra_2 = y
         self.num_playlists = numero_de_playlists
+        self.num_tracks = size_of_playlist_created
         
         self.criou_playlist = self.adicione_tracks_playlist()
 
@@ -40,7 +41,7 @@ class cria_playlist:
         
         return IDs
     
-    def select_songs_from_playlists(self, size_of_playlist_created=10):
+    def select_songs_from_playlists(self):
         '''Picks most popular songs from playlists'''
         popular_songs = dict()
         for id in self.get_playlists_id():
@@ -58,7 +59,7 @@ class cria_playlist:
         
         '''Organizando e selecionando as músicas por popularidade'''
         popular_songs = sorted(popular_songs.items(), key=lambda x: x[1], reverse=True)
-        popular_songs_ids = list(map(lambda x: x[0], popular_songs[:size_of_playlist_created]))
+        popular_songs_ids = list(map(lambda x: x[0], popular_songs[:self.num_tracks]))
         return popular_songs_ids
 
     def create_spotify_playlist(self):
@@ -98,5 +99,4 @@ class cria_playlist:
 
 if __name__ == '__main__':
     test = cria_playlist('Lucas', 'Du')
-
 
